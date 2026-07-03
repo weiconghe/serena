@@ -14,6 +14,7 @@ permissions:
 
 jobs:
   build:
+    if: github.repository == 'oraios/serena'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -53,7 +54,7 @@ jobs:
           path: docs/_build
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.repository == 'oraios/serena'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
